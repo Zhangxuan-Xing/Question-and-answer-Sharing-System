@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+	<!-- 定义数据源Bean，使用C3P0数据源实现，并注入数据源的必要信息 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close" p:driverClass="com.mysql.jdbc.Driver"
+		p:jdbcUrl="jdbc:mysql://localhost:3306/queswer?useUnicode=true&amp;characterEncoding=UTF-8"
+		p:user="root" p:password="" p:maxPoolSize="40" p:minPoolSize="2"
+		p:initialPoolSize="2" p:maxIdleTime="30" />
+	<!-- 定义Hibernate的SessionFactory，SessionFactory需要依赖数据源，注入dataSource -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+		p:dataSource-ref="dataSource">
+
+		<!-- annotatedClasses用来列出全部持久化类 -->
+		<property name="annotatedClasses">
+			<list>
+				<!-- 以下用来列出所有的PO类 -->
+				<value>vo.User</value>
+				<value>vo.Answer</value>
+				<value>vo.Question</value>
+				<value>vo.Message</value>
+				<value>vo.Follow</value>
+				<value>vo.Story</value>
+				<value>vo.Comment</value>
+			</list>
+		</property>
+
+
+		<!-- 定义Hibernate SessionFactory的属性 -->
+		<property name="hibernateProperties">
+			<props>
+				<!-- 指定Hibernate的连接方言 -->
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQL5InnoDBDialect
+				</prop>
+				<!--是否根据Hiberante映射创建数据表 -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 定义Service组件，并将DAO组件注入Service组件 -->
+	<bean id="userService" class="service.UserService" p:userDao-ref="userDao" />
+
+	<bean id="storyService" class="service.StoryService"
+		p:storyDao-ref="storyDao" />
+
+	<bean id="followService" class="service.FollowService"
+		p:followDao-ref="followDao" />
+
+	<bean id="questionService" class="service.QuestionService"
+		p:questionDao-ref="questionDao" />
+
+	<bean id="answerService" class="service.AnswerService"
+		p:answerDao-ref="answerDao" />
+
+	<bean id="messageService" class="service.MessageService"
+		p:messageDao-ref="messageDao" />
+
+	<bean id="commentService" class="service.CommentService"
+		p:commentDao-ref="commentDao" />
+
+
+
+	<bean id="userDao" class="dao.impl.UserDaoImpl"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="storyDao" class="dao.impl.StoryDaoImpl"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="followDao" class="dao.impl.FollowDaoImpl"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="questionDao" class="dao.impl.QuestionDaoImpl"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="answerDao" class="dao.impl.AnswerDaoImpl"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="messageDao" class="dao.impl.MessageDaoImpl"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="commentDao" class="dao.impl.CommentDaoImpl"
+		p:sessionFactory-ref="sessionFactory" />
+
+
+	<!-- 配置Hibernate的局部事务管理器，使用HibernateTransactionManager类 -->
+	<!-- 该类是PlatformTransactionManager接口针对采用Hibernate的特定实现类 -->
+	<!-- 配置HibernateTransactionManager需依赖注入SessionFactory -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<!-- 配置事务增强处理Bean,指定事务管理器 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<!-- 用于配置详细的事务定义 -->
+		<tx:attributes>
+			<!-- 所有以'get'开头的方法是read-only的 -->
+			<tx:method name="get*" read-only="true" />
+			<!-- 其他方法使用默认的事务设置，指定超时时长为5秒 -->
+			<tx:method name="*" isolation="DEFAULT" propagation="REQUIRED"
+				timeout="5" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- AOP配置的元素 -->
+	<aop:config>
+		<!-- 配置一个切入点 -->
+		<aop:pointcut id="myPointcut"
+			expression="bean(userService) or bean(storyService) or bean(followService) or bean(questionService) or bean(answerService) or bean(messageService) or bean(commentService)" />
+		<!-- 指定在myPointcut切入点应用txAdvice事务增强处理 -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut" />
+	</aop:config>
+
+</beans>

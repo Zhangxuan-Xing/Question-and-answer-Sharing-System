@@ -1,0 +1,27 @@
+<view class="about">
+  <view class="master-info">
+    <image src="{{userInfo.avatarUrl}}"></image>
+    <view class="master-intro">{{ques}} </view>
+    <view class="master-intro">{{quesq}} </view>
+    <image src="{{famImg}}"></image>
+  </view>
+</view>
+
+<form bindsubmit="bindFormSubmit">
+  <view class="quiz-wrapper">
+    <view class="quiz-info">向ta提问</view>
+    <toast hidden="{{hiddenToast}}" duration="2000" bindchange="toastHidden">提问已发送</toast>
+    <view class="quiz-input">
+      <textarea placeholder="请在这告诉ta吧（请控制字数在140以内）" maxlength="140" name="question"></textarea>
+    </view>
+
+    <view class="quiz-info">
+      <checkbox-group bindchange="checkChange">
+        <checkbox value="1" />是否免费
+      </checkbox-group>
+    </view>
+
+    <view class="quiz-cost">{{isFree}}</view>
+    <button class="submit" form-type="submit">准备好了</button>
+  </view>
+</form>

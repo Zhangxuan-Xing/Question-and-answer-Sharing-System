@@ -1,0 +1,34 @@
+<view class="about">
+  <view class="master-info">
+    <image src="{{userInfo.avatarUrl}}"></image>
+    <view class="master-brief">
+      <view class="master-user">
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </view>
+      <view class="master-intro">分享故事的你真的很棒呢~</view>
+    </view>
+  </view>
+</view>
+<form bindsubmit="bindFormSubmit">
+  <view class="quiz-wrapper">
+    <view class="quiz-info">分享故事</view>
+    <toast hidden="{{hiddenToast}}" duration="2000" bindchange="toastHidden">您已成功分享</toast>
+
+    <view class="quiz-title">
+      <textarea placeholder="请用一句话概况来吸引围观吧（请控制字数在140以内）" maxlength="140" name="story_title"></textarea>
+    </view>
+    <view class="quiz-info"></view>
+    <view class="quiz-input">
+      <textarea placeholder="请在这分享出你的故事吧（请控制字数在140以内）" maxlength="140" name="story_share"></textarea>
+    </view>
+
+    <view class="quiz-info">
+      <checkbox-group bindchange="checkChange">
+        <checkbox value="1" />是否免费
+      </checkbox-group>
+    </view>
+
+    <view class="quiz-cost">{{isFree}}</view>
+    <button class="submit" form-type="submit">分享它</button>
+  </view>
+</form>

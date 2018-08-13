@@ -1,0 +1,63 @@
+.ques-wrapper {
+  padding: 30rpx;
+  background-color: #fff;
+  margin-bottom: 30rpx;
+}
+
+.ques-info {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ques-sec {
+  margin-left: 20rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.ques-user {
+  color: #bbb;
+  font-size: 28rpx;
+}
+
+.ques-account {
+  color: #bbb;
+  size: 30rpx;
+}
+
+.ques-cost {
+  color: #f85f48;
+}
+
+.ques-content {
+  padding: 10rpx 0 30rpx 90rpx;
+  font-size: 32rpx;
+}
+
+.ans-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+}
+
+.submit {
+  padding: 8rpx 35rpx;
+  background-color: #ffa54f;
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 10rpx;
+}
+
+.quiz-wrapper {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx;
+}

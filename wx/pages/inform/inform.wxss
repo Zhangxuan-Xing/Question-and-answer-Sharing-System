@@ -1,0 +1,130 @@
+.ques-wrapper {
+  padding: 30rpx;
+  background-color: #fff;
+  margin-bottom: 30rpx;
+}
+
+.ques-info {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ques-info image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.ques-sec {
+  margin-left: 20rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.ques-user {
+  color: #bbb;
+  font-size: 24rpx;
+}
+
+.ques-cost {
+  color: #f85f48;
+  font-size: 24rpx;
+}
+
+.ques-content {
+  padding: 10rpx 0 30rpx 90rpx;
+  font-size: 28rpx;
+}
+
+.ans-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ans-wrapper image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.ans-time {
+  color: #ccc;
+}
+
+.ans-info {
+  color: #aaa;
+  margin-top: 30rpx;
+  padding-top: 20rpx;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  font-size: 22rpx;
+}
+
+.master-info {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  padding: 30rpx;
+  background-color: #fff;
+  margin-bottom: 30rpx;
+}
+
+.master-info image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.master-brief {
+  height: 120rpx;
+  padding-left: 40rpx;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.master-user {
+  font-size: 30rpx;
+  letter-spacing: 1px;
+}
+
+.master-intro {
+  color: #888;
+  width: 300rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 20rpx;
+}
+
+.master-fans {
+  color: #888;
+  font-size: 20rpx;
+}
+
+.master-follow {
+  color: #ddd;
+  width: 80rpx;
+  padding: 10rpx;
+  border-radius: 50rpx;
+  background-color: #999;
+  text-align: center;
+  font-size: 22rpx;
+}
+
+.like-info image {
+  width: 50rpx;
+  height: 50rpx;
+}

@@ -1,0 +1,45 @@
+<view class="top-tab flex-wrp flex-tab ">
+  <view class="toptab flex-item {{currentNavtab==idx ? 'active' : ''}}" wx:for="{{navTab}}" wx:for-index="idx" wx:for-item="itemName" data-idx="{{idx}}" bindtap="switchTab">
+    {{itemName}}
+  </view>
+</view>
+
+<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+  <view class="search flex-wrp">
+    <view class="search-left flex-item">
+      <image src="../../images/search-index.png"></image>
+      <input placeholder="搜索话题" bindinput="searchInput" placeholder-class="search-placeholder" />
+    </view>
+    <view class="search-right flex-item" bindtap="search">
+      <image src="../../images/lighting.png"></image>
+    </view>
+  </view>
+
+  <view wx:if="{{feed_length!=0}}">
+    <block wx:for="{{feed}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
+      <view class="feed-item" bindtap="bindStory" data-url="{{item.img}}" data-title="{{item.title}}" data-isfree="{{item.isfree}}" data-name="{{item.name}}">
+        <view class="feed-source">
+          <a class="">
+            <view class="avatar">
+              <image src="{{item.img}}"></image>
+            </view>
+            <text>{{item.name}} \n{{item.title}}</text>
+          </a>
+          <image class="item-look" mode="aspectFit" src="../../images/eye.png"></image>
+        </view>
+
+        <view class="feed-content">
+          <view class="answer-body">
+            <view class="answer-actions" bindtap="bindItemTap">
+              <text decode="{{true}}" wx:if="{{item.isfree==1}}">\n{{item.time}} &nbsp;-&nbsp;分享&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;免费&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.lookNum}} 人偷看</text>
+              <text decode="{{true}}" wx:elif="{{item.isfree==0}}">\n{{item.time}} &nbsp;-&nbsp;分享&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;¥ 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.lookNum}} 人偷看</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view wx:elif="{{feed_length==0}}">
+    <text class="noinfo"> 抱歉，无相关信息！ </text>
+  </view>
+</scroll-view>

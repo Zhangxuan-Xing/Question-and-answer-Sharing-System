@@ -1,0 +1,52 @@
+<template name="master-column">
+  <view class="master-info" id="{{key}}">
+    <image src="{{img}}"></image>
+    <view class="master-brief">
+      <view class="master-user">{{name}}</view>
+      <view class="master-intro">{{content}}</view>
+      <view class="master-fans">{{fans}} 人已关注</view>
+    </view>
+    <view class="master-follow" bindtap="followPerson" wx:if="{{isfamous==1}}" data-name="{{name}}">关注</view>
+    <view class="master-follow" bindtap="deleteFollow" wx:if="{{isfamous==0}}" data-name="{{name}}">取关</view>
+    <text decode="{{true}}">
+      \n &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+   </text>
+    <view class="master-follow" bindtap="toPerson" data-img="{{img}}" data-name="{{name}}">提问</view>
+  </view>
+</template>
+
+<view class="search-bar">
+  <input placeholder="搜索感兴趣的人" bindinput="searchPerson"></input>
+</view>
+
+<view wx:if="{{person==null || person==''}}">
+  <view class="column-title" bindtap="freshPerson">名人榜 - 点我遇见更多名人</view>
+  <view class="column-wrapper">
+    <block wx:for="{{hotMasters}}" wx:for-index="idx" wx:for-item="item">
+      <template is="master-column" data="{{...item}}" />
+    </block>
+  </view>
+
+  <view class="column-title">关注榜</view>
+  <view class="column-wrapper">
+    <block wx:for="{{newMasters}}">
+      <template is="master-column" data="{{...item}}" />
+    </block>
+  </view>
+</view>
+<view wx:elif="{{person!=null}}">
+  <view class="column-wrapper">
+    <block wx:for="{{newMasters}}">
+      <view class="master-info" bindtap="followPerson" id="{{key}}" data-name="{{item.name}}">
+        <image src="{{item.img}}"></image>
+        <view class="master-brief">
+          <view class="master-user">{{item.name}}</view>
+          <view class="master-intro">{{item.content}}</view>
+          <view class="master-fans">{{item.fans}} 人收听</view>
+        </view>
+        <toast hidden="{{hiddenToast}}" duration="1000" bindchange="toastHidden">您已关注</toast>
+        <view class="master-follow">{{follow}}</view>
+      </view>
+    </block>
+  </view>
+</view>

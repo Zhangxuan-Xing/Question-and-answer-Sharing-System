@@ -1,0 +1,22 @@
+<view>
+  <view class="ques-wrapper">
+    <view class="ques-info">
+      <view class="ques-sec">
+        <view class="ques-user"># Hello #</view>
+      </view>
+    </view>
+    <view class="ques-content">
+      <text decode="{{true}}" class="ques-account">
+      尊敬的 &nbsp;&nbsp; {{userInfo.nickName}}：\n &nbsp;&nbsp;&nbsp;&nbsp;您好！\n &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 系统当前出于测试阶段，暂未开放正常提现。请添加 QQ ：854828392  进行人工提现。抱歉！
+    </text>
+    </view>
+    <view class="ans-wrapper">
+      <toast hidden="{{hiddenToast}}" duration="2000" bindchange="toastHidden">感谢您的理解！</toast>
+    </view>
+    <view class="quiz-wrapper">
+      <form bindsubmit="bindSubmit">
+        <button class="submit" form-type="submit">我已知晓</button>
+      </form>
+    </view>
+  </view>
+</view>

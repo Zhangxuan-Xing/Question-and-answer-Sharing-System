@@ -1,0 +1,105 @@
+<view>
+  <view class="ques-wrapper">
+    <view class="ques-info">
+      <image src="{{dataBack.imgInf}}"></image>
+      <view class="ques-sec">
+        <view class="ques-user" wx:if="{{ismine==0}}">{{dataBack.nameInf}}</view>
+        <view class="ques-user" wx:elif="{{ismine==1}}">我</view>
+        <view wx:if="{{dataBack.isfreeInf==0}}">
+          <view class="ques-cost">￥1</view>
+        </view>
+        <view wx:elif="{{dataBack.isfreeInf==1}}">
+          <view class="ques-cost">免费</view>
+        </view>
+      </view>
+    </view>
+    <view class="ques-content">
+      <text decode="{{true}}" wx:if="{{ismine==0}}">
+      ta的一句话概括：\n &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;{{dataBack.titleInf}}
+    </text>
+      <text decode="{{true}}" wx:elif="{{ismine==1}}">
+      我的一句话概括：\n &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;{{dataBack.titleInf}}
+    </text>
+    </view>
+    <view class="ques-content">
+      <text decode="{{true}}">
+      往这儿看内容：\n &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;{{dataBack.contentInf}}
+   </text>
+    </view>
+    <view class="ans-info">
+      <view>分享于 {{dataBack.timeInf}}</view>
+      <view>已被围观 {{dataBack.lookNumInf-1}} 次</view>
+      <view class="like-info">
+        <image src="../../images/nothing.png"></image>
+        <image bindtap="addtrade" src="{{tradeUrl}}"></image>
+      </view>
+    </view>
+    <toast hidden="{{hiddenToast}}" duration="1000" bindchange="hiddenToast">您已关注</toast>
+    <toast hidden="{{hiddenAddLike}}" duration="1000" bindchange="toastAdd">您已点赞</toast>
+    <toast hidden="{{hiddenDeleLike}}" duration="1000" bindchange="toastDelete">您已取消点赞</toast>
+  </view>
+
+  <view class="master-info" bindtap="toPerson" wx:if="{{ismine==0}}">
+    <image src="{{dataBack.imgInf}}" name="url"></image>
+    <view class="master-brief">
+      <view class="master-user">{{dataBack.nameInf}}</view>
+      <view class="master-intro">{{userMore.simpleIntro}}</view>
+      <view class="master-fans" wx:if="{{dataBack.imgInf!=userInfo.avatarUrl}}">{{userMore.fans}} 已关注</view>
+    </view>
+    <view wx:if="{{dataBack.imgInf!=userInfo.avatarUrl && isfollow==0}}">
+      <view class="master-follow" bindtap="bindLiked">{{follow}}</view>
+    </view>
+    <view wx:elif="{{isfollow==1 && ismine==0}}">
+      <view class="master-follow">已关注</view>
+    </view>
+    <view wx:elif="{{ismine==1}}">
+      <view class="master-follow">本尊</view>
+    </view>
+  </view>
+
+  <!--评论列表-->
+  <view class="container">
+    <view class="comments">
+      <view class="column-title">
+        那些旁观者的留言
+      </view>
+      <view class="item touch-active" wx:for="{{comments}}" wx:key="" wx:for-item="c">
+        <view class="i-left">
+          <image class="c-u-img" src="{{c.user_img}}"></image>
+        </view>
+        <view class="i-right">
+          <view class="top">
+            <text class="u-name">{{c.user_name}}</text>
+            <text class="time">{{c.time}}</text>
+          </view>
+          <view class="content">
+            {{c.content}}
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!--评论盒子-->
+    <view class="cf-bg" catchtap="cemojiCfBg" style="display:{{cfBg ? 'block' : 'none'}}"></view>
+    <view class="comment-fixed">
+      <view class="cf-box">
+        <view class="emoji-cell">
+          <image catchtap="emojiShowHide" src='../../images/Smile.png'></image>
+        </view>
+        <textarea class="cf-content" bindfocus="textAreaFocus" maxlength="140" bindblur="textAreaBlur" auto-height value="{{content}}" placeholder="我要评论" />
+        <text class="cf-send touch-active" bindtap="send">发送</text>
+      </view>
+
+      <!--emoji表情盒子-->
+      <view class="emoji-box {{isShow ? 'emoji-move-in' : 'emoji-move-out'}} {{isLoad ? 'no-emoji-move' : ''}}">
+        <scroll-view scroll-y="true" bindscroll="emojiScroll" style="height:200px">
+          <block wx:for="{{emojis}}" wx:for-item="e" wx:key="">
+            <view class="emoji-cell">
+              <image class="touch-active" catchtap="emojiChoose" src="http://soupu.oss-cn-shanghai.aliyuncs.com/emoji/{{e.emoji}}.png" data-emoji="{{e.char}}" data-oxf="{{e.emoji}}"></image>
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,34 @@
+<view>
+  <view class="ques-wrapper">
+    <view class="ques-info">
+      <image src="{{feed.ques_img}}"></image>
+      <view class="ques-sec">
+        <view class="ques-user">我的提问</view>
+      </view>
+    </view>
+    <view class="ques-content">
+      <text decode="{{true}}">
+      \n &nbsp;&nbsp; &nbsp;&nbsp;{{feed.ques_content}}
+    </text>
+    </view>
+    <view class="ques-info">
+      <image src="{{feed.ans_img}}"></image>
+      <view class="ques-sec">
+        <view class="ques-user">{{feed.ans_name}} 回答</view>
+      </view>
+    </view>
+    <view class="ques-content">
+      <text decode="{{true}}">
+      \n &nbsp;&nbsp; &nbsp;&nbsp;{{feed.ans_content}}
+    </text>
+    </view>
+    <view class="ans-info">
+      <view>{{feed.ans_time}}</view>
+      <view class="like-info">
+        <image bindtap="addLike" src="{{likeUrl}}"></image>
+        <image src="../../images/nothing.png"></image>
+        <image bindtap="addtrade" src="{{tradeUrl}}"></image>
+      </view>
+    </view>
+  </view>
+</view>

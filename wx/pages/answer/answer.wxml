@@ -1,0 +1,26 @@
+<view class="about">
+  <view class="master-info">
+    <image src="{{quesInfo.ques_img}}"></image>
+    <view class="master-brief">
+      <view class="master-user">
+        <text class="userinfo-nickname">{{quesInfo.ques_username}}</text>
+      </view>
+      <view class="master-intro">{{quesInfo.ques_content}}</view>
+      <view class="master-intro">ta于 {{quesInfo.ques_time}} 提出</view>
+    </view>
+  </view>
+</view>
+<form bindsubmit="bindFormSubmit" wx:if="{{quesInfo.ques_isanswer==0}}">
+  <view class="quiz-wrapper">
+    <view class="quiz-info">我来回答ta</view>
+    <toast hidden="{{hiddenToast}}" duration="2000" bindchange="toastHidden">您已成功回答</toast>
+    <view class="quiz-info"></view>
+    <view class="quiz-input">
+      <textarea placeholder="请在这回答ta吧（请控制字数在140以内）" maxlength="140" name="answer"></textarea>
+    </view>
+    <button class="submit" form-type="submit">写好了</button>
+  </view>
+</form>
+<view class="quiz-wrapper" wx:if="{{quesInfo.ques_isanswer==1}}">
+  <view class="quiz-info">您已回答ta，请至历史记录查看</view>
+</view>

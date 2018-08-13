@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 指定Struts2配置文件的DTD信息 -->
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<!-- Struts2配置文件的根元素 -->
+<struts>
+	<!-- 配置了系列常量 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.devMode" value="true" />
+	<package name="action" namespace="/" extends="struts-default">
+
+
+		<!-- 用户拦截器定义在该元素下 -->
+		<interceptors>
+			<!-- 定义了一个名为authority的拦截器 -->
+			<interceptor name="authority" class="interceptor.AuthorityInterceptor" />
+		</interceptors>
+
+		<!-- 与用户User相关的Action设置 -->
+		<action name="addUser" class="action.UserAction" method="add">
+			<result>/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="updateIntro" class="action.UserAction" method="updateIntro">
+			<result>/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="findPerson" class="action.UserAction" method="findPerson">
+			<result>/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="updateAccount" class="action.UserAction" method="updateAccount">
+			<result>/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="listFamous" class="action.UserAction" method="listFamous">
+			<result>/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="listliked" class="action.UserAction" method="listliked">
+			<result>/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="searchPerson" class="action.UserAction" method="searchPerson">
+			<result>/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<!-- 与分享Story相关的Action设置 -->
+		<action name="findStory" class="action.StoryAction" method="findStory">
+			<result>/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="addStory" class="action.StoryAction" method="addStory">
+			<result>/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="listStories" class="action.StoryAction" method="listStories">
+			<result>/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="searchStories" class="action.StoryAction" method="searchStories">
+			<result>/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="MyStories" class="action.StoryAction" method="MyStories">
+			<result>/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="listStoriesByFree" class="action.StoryAction"
+			method="listStoriesByFree">
+			<result>/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="listStoriesByLook" class="action.StoryAction"
+			method="listStoriesByLook">
+			<result>/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<!-- 与关注Follow相关的Action设置 -->
+		<action name="addFollow" class="action.FollowAction" method="addFollow">
+			<result>/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="isFollow" class="action.FollowAction" method="isFollow">
+			<result>/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="deleteFollow" class="action.FollowAction" method="deleteFollow">
+			<result>/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<!-- 与提问Question相关的Action设置 -->
+		<action name="addQuest" class="action.QuestionAction" method="addQuest">
+			<result>/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="listQuestions" class="action.QuestionAction"
+			method="listQuestions">
+			<result>/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="MyQuestions" class="action.QuestionAction"
+			method="MyQuestions">
+			<result>/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="searchQuestions" class="action.QuestionAction"
+			method="searchQuestions">
+			<result>/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="searchMyQuestions" class="action.QuestionAction"
+			method="searchMyQuestions">
+			<result>/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="findQuesToMe" class="action.QuestionAction"
+			method="findQuesToMe">
+			<result>/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="listQuestionsByTime" class="action.QuestionAction"
+			method="listQuestionsByTime">
+			<result>/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="listQuestionsByLike" class="action.QuestionAction"
+			method="listQuestionsByLike">
+			<result>/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<!-- 与回答Answer相关的Action设置 -->
+		<action name="addLiked" class="action.AnswerAction" method="addLiked">
+			<result>/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="deleteLiked" class="action.AnswerAction" method="deleteLiked">
+			<result>/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="addAnswer" class="action.AnswerAction" method="addAnswer">
+			<result>/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="lookAnswer" class="action.AnswerAction" method="lookAnswer">
+			<result>/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="MyAnswers" class="action.AnswerAction" method="MyAnswers">
+			<result>/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="searchMyAnswers" class="action.AnswerAction"
+			method="searchMyAnswers">
+			<result>/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<!-- 与评论Comment相关的Action设置 -->
+		<action name="addComment" class="action.CommentAction" method="addComment">
+			<result>/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="listComments" class="action.CommentAction"
+			method="listComments">
+			<result>/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+		<!-- 与通知Message相关的Action设置 -->
+		<action name="findNotifies" class="action.MessageAction"
+			method="findNotifies">
+			<result>/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+
+	</package>
+</struts>

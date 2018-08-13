@@ -1,0 +1,70 @@
+<view class="top-tab flex-wrp flex-tab ">
+  <view class="toptab flex-item {{currentNavtab==idx ? 'active' : ''}}" wx:for="{{navTab}}" wx:for-index="idx" wx:for-item="itemName" data-idx="{{idx}}" bindtap="switchTab">
+    {{itemName}}
+  </view>
+</view>
+
+<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+
+  <view class="search flex-wrp">
+    <view class="search-left flex-item">
+      <image src="../../images/search-index.png"></image>
+      <input placeholder="搜索问题" bindinput="searchInput" placeholder-class="search-placeholder" />
+    </view>
+    <view class="search-right flex-item" bindtap="search">
+      <image src="../../images/lighting.png"></image>
+    </view>
+  </view>
+
+  <view wx:if="{{feed_length!=0}}">
+    <block wx:for="{{feed}}" wx:for-index="idx" wx:for-item="item">
+      <view class="feed-item" bindtap="bindStory" data-ansimg="{{item.ans_img}}" data-ansname="{{item.ans_username}}" data-anscontent="{{item.ans_content}}" data-quesname="{{item.ques_username}}" data-quesimg="{{item.ques_img}}" data-quescontent="{{item.ques_content}}"
+        data-anstime="{{item.ans_time}}" data-isanswer="{{item.is_answer}}" data-ans_liked="{{item.ans_liked}}" data-ques_is_free="{{item.ques_is_free}}">
+        <view class="feed-source">
+          <a class="">
+            <view class="avatar">
+              <image src="{{item.ans_img}}"></image>
+            </view>
+            <text decode="{{true}}">{{item.ans_username}}  &nbsp; 回答了 &nbsp; </text>
+            <view class="avatar">
+              <image src="{{item.ques_img}}"></image>
+            </view>
+            <text decode="{{true}}">{{item.ques_username}} &nbsp; 的提问</text>
+          </a>
+        </view>
+        <view class="feed-content">
+          <view class="question" qid="{{question_id}}">
+            <a class="question-link">
+              <text>{{item.ques_content}}</text>
+            </a>
+          </view>
+          <view class="answer-body">
+            <view>
+              <text class="answer-txt" aid="{{answer_id}}" wx:if="{{item.ques_is_free==1}}">{{item.ans_content}}</text>
+              <text class="answer-txt" aid="{{answer_id}}" wx:elif="{{item.ques_is_free==1}}">亲，支付1元即可查看ta的回答~ </text>
+            </view>
+            <view class="answer-actions">
+              <view class="like dot">
+                <a>{{item.ans_liked}} 赞同 </a>
+              </view>
+              <view class="comments dot">
+                <a>{{item.ans_time}} 创建 </a>
+              </view>
+              <view class="follow-it">
+                <view wx:if="{{item.ques_is_free==0}}">
+                  <view class="ques-cost"> 价值 ￥1</view>
+                </view>
+                <view wx:elif="{{item.ques_is_free==1}}">
+                  <view class="ques-cost">免费</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view wx:elif="{{feed_length==0}}">
+    <text class="noinfo"> 抱歉，无相关信息！ </text>
+  </view>
+</scroll-view>

@@ -1,0 +1,73 @@
+{
+  "pages": [
+    "pages/mine/mine",
+    "pages/index/index",
+    "pages/account/account",
+    "pages/detailed/detailed",
+    "pages/inform/inform",
+    "pages/share/share",
+    "pages/search/search",
+    "pages/notify/notify",
+    "pages/story/story",
+    "pages/logs/logs",
+    "pages/quest/quest",
+    "pages/listques/listques",
+    "pages/listshares/listshares",
+    "pages/answer/answer",
+    "pages/listans/listans",
+    "pages/cash/cash",
+    "pages/hisAnswer/hisAnswer"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#eee",
+    "navigationBarBackgroundColor": "#FFA54F",
+    "navigationBarTitleText": "个人中心",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
+  },
+
+  "tabBar": {
+    "color": "#626567",
+    "selectedColor": "#FFA54F",
+    "backgroundColor": "#FBFBFB",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "问答",
+        "iconPath": "images/data.png",
+        "selectedIconPath": "images/data_focus.png"
+      },
+      {
+        "pagePath": "pages/story/story",
+        "text": "分享",
+        "iconPath": "images/component.png",
+        "selectedIconPath": "images/component_focus.png"
+      },
+      {
+        "pagePath": "pages/notify/notify",
+        "text": "通知",
+        "iconPath": "images/comments.png",
+        "selectedIconPath": "images/comments_focus.png"
+      },
+      {
+        "pagePath": "pages/search/search",
+        "text": "寻ta",
+        "iconPath": "images/bussiness-card.png",
+        "selectedIconPath": "images/bussiness-card_focus.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/account_focus.png",
+        "selectedIconPath": "images/account.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}

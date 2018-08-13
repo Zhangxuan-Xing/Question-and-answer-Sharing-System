@@ -1,0 +1,24 @@
+<scroll-view scroll-y="true" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
+  <view>
+    <!-- <view class="unread">
+      <text> 主人，别忘了多看看我</text>
+    </view> -->
+    <view wx:if="{{info_length!=0}}">
+      <block wx:for="{{info}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
+        <view class="notify-item flex-wrp" bindtap="bindNotify" data-type="{{item.type}}" data-quesid="{{item.quesid}}" data-ansid="{{item.ansid}}">
+          <view class="avatar flex-item" wx:if="{{item.img!=0}}">
+            <image src="{{item.img}}"></image>
+          </view>
+          <view class="avatar flex-item" wx:elif="{{item.img==0}}">
+            <image src="http://wx.qlogo.cn/mmhead/PiajxSqBRaELkzEDpBZ3vVaLnz4WLO8OZ1RoibXuMIhgFCMxSjWBdSjQ/132"></image>
+          </view>
+          <view class="notify-content flex-item">
+            <text class="notify-source">{{item.name}}</text>
+            <text class="notify-title"> {{item.content}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+</scroll-view>

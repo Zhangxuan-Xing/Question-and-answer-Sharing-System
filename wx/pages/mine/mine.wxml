@@ -1,0 +1,49 @@
+<view>
+  <view class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text decode="{{true}}" class="userinfo-nickname">{{userInfo.nickName}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  粉丝：{{fans}} 人</text>
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <view class="cf-content">
+      <view catchtap="updateIntro">
+        <image class="containerimage" src="/images/edit.png"></image>
+        <text class="userinfo-desc"> 点我 确认修改</text>
+      </view>
+      <form bindsubmit="bindSubmit">
+        <textarea placeholder="{{intro}}" bindinput="bindTextAreaBlur" maxlength="14" id="user_intro"></textarea>
+      </form>
+    </view>
+  </view>
+
+  <view class="account-wrapper">
+    <view class="profile" catchtap="toMake">
+      <view class="profile-item">我要提问</view>
+      <image class="profile-arrow" src="/images/arrow.png"></image>
+    </view>
+    <view class="profile" catchtap="toShare">
+      <view class="profile-item">我要分享</view>
+      <image class="profile-arrow" src="/images/arrow.png"></image>
+    </view>
+    <view class="profile" catchtap="toMoney">
+      <view class="profile-item">我要充值</view>
+      <image class="profile-arrow" src="/images/arrow.png"></image>
+    </view>
+    <view class="profile" catchtap="toGet">
+      <view class="profile-item">我要提现</view>
+      <image class="profile-arrow" src="/images/arrow.png"></image>
+    </view>
+  </view>
+  <view class="account-wrapper">
+    <view class="profile" catchtap="toQues">
+      <view class="profile-item">我的提问</view>
+      <image class="profile-arrow" src="/images/arrow.png"></image>
+    </view>
+    <view class="profile" catchtap="toMyAnswer">
+      <view class="profile-item">我的回答</view>
+      <image class="profile-arrow" src="/images/arrow.png"></image>
+    </view>
+    <view class="profile" catchtap="toMyShare">
+      <view class="profile-item">我的分享</view>
+      <image class="profile-arrow" src="/images/arrow.png"></image>
+    </view>
+  </view>
+</view>

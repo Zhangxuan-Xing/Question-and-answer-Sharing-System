@@ -1,0 +1,23 @@
+<view>
+  <view class="ques-wrapper">
+    <view class="ques-info">
+      <view class="ques-sec">
+        <view class="ques-user"># Hello #</view>
+      </view>
+    </view>
+    <view class="ques-content">
+      <text decode="{{true}}" class="ques-account">
+      尊敬的 &nbsp;&nbsp; {{userInfo.nickName}}：\n &nbsp;&nbsp;&nbsp;&nbsp;您好！\n &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;请扫描下方二维码进行充值（金额请为整数）
+    </text>
+    </view>
+    <view class="ans-wrapper">
+      <image src="../../images/myTrade.png"></image>
+      <toast hidden="{{hiddenToast}}" duration="2000" bindchange="toastHidden">感谢支持，金币将在十五分钟内到账！</toast>
+    </view>
+    <view class="quiz-wrapper">
+      <form bindsubmit="bindSubmit">
+        <button class="submit" form-type="submit">已完成</button>
+      </form>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,75 @@
+<view>
+  <view class="ques-wrapper">
+    <view class="ques-info">
+      <image src="{{quesimg}}"></image>
+      <view class="ques-sec">
+        <view class="ques-user" wx:if="{{ques_is_free == 3}}">我的提问</view>
+        <view class="ques-user" wx:if="{{ques_is_free != 3}}">{{quesname}} 提问</view>
+        <view wx:if="{{ques_is_free==0}}">
+          <view class="ques-cost">￥1</view>
+        </view>
+        <view wx:elif="{{ques_is_free==1}}">
+          <view class="ques-cost">免费</view>
+        </view>
+      </view>
+    </view>
+    <view class="ques-content">
+      <text decode="{{true}}">
+      \n &nbsp;&nbsp; &nbsp;&nbsp;{{quescontent}}
+    </text>
+    </view>
+    <view class="ques-info" wx:if="{{is_answer==1}}">
+      <image src="{{ansimg}}"></image>
+      <view class="ques-sec">
+        <view class="ques-user" wx:if="{{ques_is_free<4}}">{{ansname}} 回答</view>
+        <view class="ques-user" wx:if="{{ques_is_free == 4}}">我的回答</view>
+      </view>
+    </view>
+    <view class="ques-content" wx:if="{{is_answer==1}}">
+      <text decode="{{true}}" wx:if="{{isok>0}}">
+      \n &nbsp;&nbsp; &nbsp;&nbsp;{{anscontent}}
+    </text>
+      <text decode="{{true}}" wx:if="{{isok==0}}">
+      \n &nbsp;&nbsp; &nbsp;&nbsp;亲，付费后才能显示哦~
+    </text>
+    </view>
+    <view class="ques-content" wx:if="{{is_answer==0}}">
+      <text decode="{{true}}">
+      \n &nbsp;&nbsp; &nbsp;&nbsp;【待对方回答后，系统将进行完整显示】
+       </text>
+    </view>
+    <view class="ans-info" wx:if="{{is_answer==1}}">
+      <view>
+        <text decode="{{true}}">
+       {{anstime}}  &nbsp;&nbsp; &nbsp;&nbsp;已获{{ans_liked}}人点赞
+    </text>
+      </view>
+      <view class="like-info">
+        <image bindtap="addLike" src="{{likeUrl}}"></image>
+        <image src="../../images/nothing.png"></image>
+        <image bindtap="addtrade" src="{{tradeUrl}}"></image>
+        <toast hidden="{{hiddenToast}}" duration="1000" bindchange="hiddenToast">您已关注</toast>
+        <toast hidden="{{hiddenAddLike}}" duration="1000" bindchange="toastAdd">您已点赞</toast>
+        <toast hidden="{{hiddenDeleLike}}" duration="1000" bindchange="toastDelete">您已取消点赞</toast>
+      </view>
+    </view>
+  </view>
+
+  <view class="master-info" bindtap="toPerson" wx:if="{{ques_is_free < 3}}">
+    <image src="{{ansimg}}"></image>
+    <view class="master-brief">
+      <view class="master-user">{{ansname}}</view>
+      <view class="master-intro">{{userMore.simpleIntro}}</view>
+      <view class="master-fans">{{userMore.fans}}人关注</view>
+    </view>
+    <view wx:if="{{ismine==0  && isfollow==0}}">
+      <view class="master-follow" bindtap="bindLiked">{{follow}}</view>
+    </view>
+    <view wx:elif="{{isfollow==1  && ismine==0}}">
+      <view class="master-follow">已关注</view>
+    </view>
+    <view wx:elif="{{ismine==1}}">
+      <view class="master-follow">本尊</view>
+    </view>
+  </view>
+</view>
