@@ -94,7 +94,7 @@
 ![关注表](https://github.com/Zhangxuan-Xing/Question-and-answer-Sharing-System/blob/master/Rendering/sqlFollow.png)
 
 ### 编码注释
-   *备注*：本人已对前端与后端的主要代码进行注释，方便大家进行理解与查阅，如下图所示  -->
+   *备注*：本人已对前端与后端的主要代码进行注释，方便大家进行理解与查阅，如下图所示    -->
 
 ![注释](https://github.com/Zhangxuan-Xing/Question-and-answer-Sharing-System/blob/master/Rendering/annotation1.png)   
 
